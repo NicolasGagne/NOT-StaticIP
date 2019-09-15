@@ -12,7 +12,7 @@ I use https://www.dynu.com
 You have to modified the code fi you use another proveder
 """
 
-DNS_PROVIDER_LOGIN = None
+DNS_PROVIDER_LOGIN = 'https://www.dynu.com/en-US/ControlPanel/Login'
 
 DNS_LOGIN = None
 DNS_PASSWORD = None
