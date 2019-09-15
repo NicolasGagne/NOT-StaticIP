@@ -124,3 +124,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Private file
+private.private.py
+/private/private.py
