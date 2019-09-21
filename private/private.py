@@ -12,9 +12,22 @@ I use https://www.dynu.com
 You have to modified the code fi you use another proveder
 """
 
-DNS_PROVIDER_LOGIN = 'https://www.dynu.com/en-US/ControlPanel/Login'
+API_KEY = "PUT YOU API KEY from: https://www.dynu.com"
+API_DNS_URL = "https://api.dynu.com/v2/"
+API_accept = "application/json"
+API_Content_Type = "application/json"
 
-DNS_LOGIN = None
-DNS_PASSWORD = None
-
-
+# list the key that will be needed for a post
+API_key_list =[
+    "name",
+    "group",
+    "ipv4Address",
+    "ipv6Address",
+    "ttl",
+    "ipv4",
+    "ipv6",
+    "ipv4WildcardAlias",
+    "ipv6WildcardAlias",
+    "allowZoneTransfer",
+    "dnssec"
+]
