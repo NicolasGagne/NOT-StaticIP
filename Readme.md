@@ -1,8 +1,16 @@
-The gold is to create a python routine to update the IP adress if you dont have a static IP
+The gold is to overcome the problem of not having a static by using a DDNS provider and automatic update the IP with your current one.
 
-I use the following DDNS privider: https://www.dynu.com/en-US/
-You can find the documentation at: https://www.dynu.com/Resources/API
+I use the following DDNS privider: https://www.dynu.com/en-US/ 
 
-Usage:
+Note: This will update all the IP for all the domain under that account
 
-Get your own API Key form the dynu.com site and put it in the file private.py
+How to:
+
+- Setup an account on the dynu.com site and make sure it working properly.
+- Get your own API Key the and put it in the file private.py; Documentation at: https://www.dynu.com/Resources/API
+- Run on the same network as the server. 
+
+Coming soon:
+
+- Timer function to permit to work continuously
+- Executable version for other language
