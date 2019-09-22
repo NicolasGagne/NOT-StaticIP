@@ -1,6 +1,8 @@
 The gold is to create a python routine to update the IP adress if you dont have a static IP
 
-It used all Free service online
-File private.py must be setup with your own account
+I use the following DDNS privider: https://www.dynu.com/en-US/
+You can find the documentation at: https://www.dynu.com/Resources/API
 
-You can find the documentation at: https://www.dynu.com/en-US/
+Usage:
+
+Get your own API Key form the dynu.com site and put it in the file private.py
