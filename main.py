@@ -6,8 +6,13 @@ from urllib import request, parse
 import requests
 from private import private
 import json
+import datetime, time
 
-
+headers = {
+    'accept': private.API_accept,
+    'API-Key': private.API_KEY,
+    'Content-Type': private.API_Content_Type,
+}
 
 def get_my_IP():
     """
@@ -16,6 +21,28 @@ def get_my_IP():
     """
     return request.urlopen('https://ident.me').read().decode('utf8')
 
+def check_ip():
+    """
+
+    :return: LIst of Sting containg the IP adress in account of DDNS ["XXX.XXX.XXX.XXX",]
+    """
+    list_IP = []
+
+    response = requests.get(private.API_DNS_URL + 'dns', headers=headers)
+
+    # Check if response was successful
+    if response.status_code == 200:
+
+        # Do the routine for each domain under that account
+        for dom_dict in response.json()['domains']:
+            list_IP.append(dom_dict['ipv4Address'])
+
+    else:
+        print('Login error, check api Key')
+
+
+    return list_IP
+
 
 def update_my_IP(my_IP):
     """
@@ -23,12 +50,6 @@ def update_my_IP(my_IP):
     :param my_IP: String value of my cureent IP
     :return: None
     """
-
-    headers = {
-        'accept': private.API_accept,
-        'API-Key': private.API_KEY,
-        'Content-Type': private.API_Content_Type,
-    }
 
     response = requests.get(private.API_DNS_URL + 'dns', headers=headers)
 
@@ -66,7 +87,18 @@ def main():
     Runnign the all program.
     :return: None
     """
-    update_my_IP(get_my_IP())
+
+    while True:
+        list_check_ip = check_ip()
+        my_IP = get_my_IP()
+
+        if len(set(list_check_ip)) == 1 and list_check_ip[0] != my_IP:
+
+            update_my_IP(my_IP)
+            print('Update completed at:', datetime.datetime.now())
+
+        print('IP address has not change at:', datetime.datetime.now())
+        time.sleep(600)
 
 
 
