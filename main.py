@@ -37,18 +37,22 @@ def check_ip():
         for dom_dict in response.json()['domains']:
             list_IP.append(dom_dict['ipv4Address'])
 
+        return list_IP
+
     else:
         print('Login error, check api Key')
 
+        return None
 
-    return list_IP
+
+
 
 
 def update_my_IP(my_IP):
     """
     
     :param my_IP: String value of my cureent IP
-    :return: None
+    :return: True if OK  or False if error
     """
 
     response = requests.get(private.API_DNS_URL + 'dns', headers=headers)
@@ -78,8 +82,13 @@ def update_my_IP(my_IP):
             else:
                 print('ERROR: Address with <<' + dom_dict['name'] + ">> Something wrong...")
 
+            return True
+
     else:
-            print('Login error, check api Key')
+        print('Login error, check api Key')
+        return False
+
+
 
 
 def main():
@@ -92,12 +101,20 @@ def main():
         list_check_ip = check_ip()
         my_IP = get_my_IP()
 
+        if list_check_ip == None:
+            break
+
         if len(set(list_check_ip)) == 1 and list_check_ip[0] != my_IP:
 
-            update_my_IP(my_IP)
-            print('Update completed at:', datetime.datetime.now())
+            if update_my_IP(my_IP):
+                print('IP Update completed at:', datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S'))
 
-        print('IP address has not change at:', datetime.datetime.now())
+            else:
+                print("Error append at: ", datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S'))
+
+        elif len(list_check_ip) == 1 or list_check_ip[0] == my_IP:
+            print('IP do not need to be change at:', datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S'))
+
         time.sleep(600)
 
 
