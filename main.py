@@ -107,13 +107,21 @@ def main():
         if len(set(list_check_ip)) == 1 and list_check_ip[0] != my_IP:
 
             if update_my_IP(my_IP):
-                print('IP Update completed at:', datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S'))
+                p = 'IP Update completed at:' + datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+                print(p)
 
             else:
-                print("Error append at: ", datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S'))
+                p = "Error append at: " + datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+                print(p)
+                
 
         elif len(list_check_ip) == 1 or list_check_ip[0] == my_IP:
-            print('IP do not need to be change at:', datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S'))
+            p = 'IP do not need to be change at:' + datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+            print(p)
+            
+        with open("LOG.txt", "a+") as f:
+            f.write(p)
+            f.write('\n')
 
         time.sleep(600)
 
