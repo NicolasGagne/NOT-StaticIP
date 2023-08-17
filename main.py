@@ -78,7 +78,7 @@ def update_my_IP(my_IP):
 
             # Check if the above post was successful.
             if response.status_code == 200:
-                print('Address with <<' + dom_dict['name'] + ">> has been update with your current IP")
+                print('Address with <<' + dom_dict['name'] + ">> has been update with your current IP" + " New IP: " + my_IP)
             else:
                 print('ERROR: Address with <<' + dom_dict['name'] + ">> Something wrong...")
 
@@ -107,7 +107,7 @@ def main():
         if len(set(list_check_ip)) == 1 and list_check_ip[0] != my_IP:
 
             if update_my_IP(my_IP):
-                p = 'IP Update completed at:' + datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+                p = 'IP Update completed at:' + datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + " New IP: " + my_IP
                 print(p)
 
             else:
@@ -116,7 +116,7 @@ def main():
                 
 
         elif len(list_check_ip) == 1 or list_check_ip[0] == my_IP:
-            p = 'IP do not need to be change at:' + datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+            p = 'IP do not need to be change at:' + datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + " IP: " + my_IP
             print(p)
             
         with open("LOG.txt", "a+") as f:
